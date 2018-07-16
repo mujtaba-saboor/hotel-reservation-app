@@ -1,0 +1,50 @@
+<div class="row">
+<aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/hotels_form' %>
+      </section>
+    </aside>
+<div class="col-md-8">
+    <h3><%="#{@hotel.name.capitalize} | #{@hotel.city.capitalize} | #{@hotel.country.capitalize}" %></h3>
+    <span>
+    <%= image_tag @hotel.picture, :size => '780x380', alt: @hotel.name if @hotel.picture? %>
+  </span>
+  <h3>Rooms</h3>
+  <span>
+    Check in: <b> <%= date_time?(@check_in) %> </b> |  Check out: <b><%= "#{date_time?(@check_out)}" %></b> <%= link_to "Change parameters?", create_reservation_path %>
+    </span>
+    <br> <br>
+    <%= form_tag reserve_path,id: 'search1', style: 'display:inline',method: :post do %>
+    <table class="table table-bordered">  
+    <tr>
+      <th># &nbsp; &nbsp; &nbsp;</th>
+      <th>Room No. &nbsp; &nbsp; &nbsp;</th>
+      <th>Category &nbsp; &nbsp; &nbsp;</th>
+      <th>Price &nbsp; &nbsp; &nbsp;</th>
+      <th>Reserve &nbsp; &nbsp; &nbsp;</th>
+    </tr>
+<% @selected_rooms.each.with_index(1) do |room,idx| %>
+    <tr>
+      <td><%=idx%></td>
+      <td><%=room_no?(room.room_no)%></td>
+      <td><%=room.category%></td>
+      <td><%=room.price%> $</td>
+      <td text-align="right"><%= check_box_tag 'room[]', room.id  %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= hidden_field_tag :id, @hotel.id  %>
+  <%= submit_tag "Confirm",data: { confirm: "Are you sure?" }, class: 'btn btn-primary' %>
+  <% end %>
+   <script type="text/javascript">
+      $('#search1').bind('submit', function(e) {
+      if ($("input[type='checkbox'][name='room[]']:checked").length==0){
+        alert("kindly select one option")
+        e.preventDefault();
+      }
+      });
+    </script>
+    </div>
+    </div>
+   
+   

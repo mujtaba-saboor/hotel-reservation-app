@@ -1,0 +1,15 @@
+<% provide(:title, 'Bookings') %>
+<div class="row">
+<aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/hotels_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+    <h3>Bookings Record</h3>
+  <ol class="microposts">
+<%= render @reservations %>
+</ol>
+<%= will_paginate %>
+    </div>
+    </div>

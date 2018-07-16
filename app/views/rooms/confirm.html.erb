@@ -1,0 +1,29 @@
+<div class="row">
+  <span>
+    Check in: &nbsp;&nbsp;&nbsp;<b> <%= date_time?(@reservation.date_from) %></b>
+    <br>
+    <%= params[:check_in] %>
+    Check out: &nbsp;<b> <%= date_time?(@reservation.date_to) %></b>
+    <br>
+    Room No: &nbsp;&nbsp;<b> <%= room(@reservation.room_id) %></b>
+    <br>
+    Hotel: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  <%= hotel1(@reservation.hotel_id) %>,&nbsp;<%= hotel2(@reservation.hotel_id) %>,&nbsp;<%= hotel3(@reservation.hotel_id) %></b>
+    <br>
+  </span>
+  <br>
+  <% if cannot? :manage, User %>
+  <%= hidden_field_tag 'selected_folder', @reservation %>
+   <div style="float:left; margin-right: 10px;">
+  <%= button_to "Confirm", reserve_path, class: 'btn btn-primary' %>
+  </div>
+  <div style="float:left;">
+  <%= button_to "Cancel reservation", root_url, method: :get, class: 'btn btn-danger'%>
+  </div>
+  <%end%>
+  <% if can? :manage, User %>
+    <%= link_to "   Cancel reservation", @reservation, method: :delete, 
+    data: { confirm: "You sure?" } %>
+  <% end %>
+  <br>
+  <br>
+  </div>

@@ -1,0 +1,25 @@
+ <div class="row">
+ <aside class="col-md-4">
+      <section class="user_info">
+        <% if user_signed_in?  %>
+      <% if cannot? :manage, User%>
+        <%= render 'shared/hotels_form' %>
+        <%end%>
+        <%end%>
+      </section>
+    </aside>
+<% provide(:title, 'About') %>
+
+<div class="col-md-8">
+<h1>About</h1>
+<p>
+  Established in 1996 in Amsterdam, Booking.com has grown from a small Dutch start-up to one of the largest travel e-commerce companies in the world. Part of Booking Holdings Inc. (NASDAQ: BKNG), Booking.com now employs more than 17,000 employees in 198 offices in 70 countries worldwide. 
+</p>
+<p>
+  With a mission to empower people to experience the world, Booking.com invests in digital technology that helps take the friction out of travel. At Booking.com, we connect travellers with the world’s largest selection of incredible places to stay, including everything from apartments, vacation homes, and family-run B&Bs to 5-star luxury resorts, tree houses and even igloos.
+</p>
+<p>
+   The Booking.com website and mobile apps are available in over 40 languages, offer 28,860,879 total reported listings, and cover 137,418 destinations in 228 countries and territories worldwide.
+</p>
+</div>
+</div>

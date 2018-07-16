@@ -1,0 +1,38 @@
+
+<li>
+  <span>
+    Check in: &nbsp;&nbsp;&nbsp;<b> <%= date_time?(reservation.date_from) %></b>
+    <br>
+    Check out: &nbsp;<b> <%= date_time?(reservation.date_to) %></b>
+    <br>
+    Room No: &nbsp;&nbsp;<b> <%= room(reservation.room_id) %></b>
+    <br>
+    Hotel: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>  <%= hotel1(reservation.hotel_id) %>,&nbsp;<%= hotel2(reservation.hotel_id) %>,&nbsp;<%= hotel3(reservation.hotel_id) %></b>
+    <br>
+    Status: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> <span></span> <%= status(reservation.id) %></b>
+    <br>
+  </span>
+  <br>
+  <% if cannot? :manage, User %>
+   <div style="float:left; margin-right: 10px;">
+  <%= button_to "Check out", check_out_reservation_path(reservation.id) , class: 'btn btn-submit',  data: { confirm: "Are you sure?" }, :disabled => true?(reservation.id) %>
+  </div>
+  <div style="float:left; margin-right: 10px;">
+  <%= button_to "Cancel reservation", reservation, class: 'btn btn-danger',
+                data: { confirm: "Are you sure?" }, method: :delete, :disabled => true?(reservation.id) %>
+  </div>
+  <% if true?(reservation.id) %>
+    <div style="float:left;">
+  <%= button_to "Remove", reservation, class: 'btn btn-danger',
+                data: { confirm: "Are you sure?" }, method: :delete %>
+  </div>
+  <%end%>
+  <%end%>
+  <% if can? :manage, User %>
+    <%= link_to "   Cancel reservation", reservation, method: :delete, 
+    data: { confirm: "You sure?" } %>
+  <% end %>
+  <br>
+  <br>
+  
+</li>

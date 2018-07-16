@@ -1,0 +1,13 @@
+<li id="hotel-<%= hotel.id %>">
+  <span>
+    <%=link_to "#{hotel.name} | #{hotel.city}", link_value(hotel) %> 
+    <br><br>
+     <div class="col-md-8"> <b> <% if can? :manage, User %>
+     <%= link_to "Delete?", hotel, method: :delete,
+             data: { confirm: "You sure?" } %></b>
+    <%end%>
+</div>
+    <%= image_tag hotel.picture, :size => '780x380', alt: hotel.name if hotel.picture? %>
+  </span>
+  <br>
+</li>

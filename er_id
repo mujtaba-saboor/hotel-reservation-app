@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/mujtaba/workspace/project1/app/controllers/rooms_controller.rb @ line 16 RoomsController#reserve:
+
+     [1;34m6[0m: [32mdef[0m [1;34mreserve[0m
+     [1;34m7[0m:   [1;34m# binding.pry[0m
+     [1;34m8[0m:   [32mif[0m params[[33m:room[0m].nil?
+     [1;34m9[0m:     flash[[33m:notice[0m] = [31m[1;31m"[0m[31mNo rooms selected[1;31m"[0m[31m[0m
+    [1;34m10[0m:      redirect_to [33m:back[0m
+    [1;34m11[0m:    [32mend[0m
+    [1;34m12[0m:   rooms_for_reservation = params[[33m:room[0m]
+    [1;34m13[0m:   hotel_id =  [1;34;4mHotel[0m.find(params[[33m:id[0m]).id
+    [1;34m14[0m:   binding.pry
+    [1;34m15[0m:   user_id = current_user.role == [31m[1;31m'[0m[31m:admin[1;31m'[0m[31m[0m ? session[[33m:user[0m] : current_user.id
+ => [1;34m16[0m:   check_in = session[[33m:check_in[0m]
+    [1;34m17[0m:   check_out = session[[33m:check_out[0m]
+    [1;34m18[0m:   [1;34m# binding.pry[0m
+    [1;34m19[0m:   rooms_for_reservation.each [32mdo[0m |room|
+    [1;34m20[0m:     reservation = [1;34;4mReservation[0m.create([35mdate_from[0m: check_in,
+    [1;34m21[0m:                                      [35mdate_to[0m: check_out, 
+    [1;34m22[0m:                                      [35muser_id[0m: user_id,
+    [1;34m23[0m:                                      [35mroom_id[0m: room,
+    [1;34m24[0m:                                      [35mhotel_id[0m: hotel_id,
+    [1;34m25[0m:                                      [35mbooked[0m: [1;34m1[0m) 
+    [1;34m26[0m:   [32mend[0m
+    [1;34m27[0m: [32mend[0m
+

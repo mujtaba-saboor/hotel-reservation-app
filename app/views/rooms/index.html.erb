@@ -1,0 +1,22 @@
+<h2>All rooms</h2>
+<table class="table table-bordered">  
+    <tr>
+      <th># &nbsp; &nbsp; &nbsp;</th>
+      <th>Room No. &nbsp; &nbsp; &nbsp;</th>
+      <th>Category &nbsp; &nbsp; &nbsp;</th>
+      <th>Price &nbsp; &nbsp; &nbsp;</th>
+      <th>Remove? &nbsp; &nbsp; &nbsp;</th>
+    </tr>
+<% @rooms.each.with_index(1) do |room,idx| %>
+ <tr>
+    <td><%=idx%></td>
+    <td><%=room_no?(room.room_no)%></td> 
+    <td><%=room.category%></td>
+    <td><%=room.price%> $</td>
+    <td><%= link_to "Yes", room, method: :delete,
+             data: { confirm: "You sure?" } %></b></td>
+  </tr>   
+  <%end %>
+</table>
+<%= link_to "Create new room", new_room_path(@hotel_id) %>
+  

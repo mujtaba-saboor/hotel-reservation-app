@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<%= form_tag hotels_search_path,id: 'search', style: 'display:inline',method: :post do %>
+  
+  <%= label_tag(:country, "Country:") %>
+  <%= text_field_tag :country, params[:country], :required => true %> 
+  
+  <%= label_tag(:city, "City:") %>
+  <%= text_field_tag :city, params[:city] %>
+  
+  <%= label_tag(:check_in, "Check in:") %>
+    <%= text_field_tag :check_in, params[:check_in],:required => true, id: "datetimepicker1" %>
+    
+    <%= label_tag(:check_out, "Check out:") %>
+    <%= text_field_tag :check_out, params[:check_out],:required => true, id: "datetimepicker2" %>
+
+  <%= submit_tag "Reserve", name: nil, class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+ <script type="text/javascript">
+   $(function () {
+    $('#datetimepicker1').datetimepicker({
+        widgetPositioning: {
+            vertical: 'bottom'
+        }
+      });
+  });
+
+  $(function () {
+    $('#datetimepicker2').datetimepicker({
+        widgetPositioning: {
+            vertical: 'bottom'
+        }
+      });
+    
+  });
+    $('#search').bind('submit', function(e) {
+      var current_date = new Date($.now())
+      var check_in = new Date($("#check_in").val())
+      var check_out = new Date($("#check_out").val())
+    if (check_in < current_date || check_out < current_date)
+    {
+      alert("Kindly enter a date greater than current date")
+      e.preventDefault();
+    }
+    else
+    {
+      if (check_out < check_in )
+      {
+        alert("Incorrect Dates")
+        e.preventDefault();
+      }
+    }
+    });
+    </script>

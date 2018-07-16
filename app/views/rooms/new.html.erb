@@ -1,0 +1,23 @@
+<% provide(:title, 'Room') %>
+<h2>Add Room</h2>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<%= form_for(@room) do |f| %>
+<%= render 'shared/error_messages', html: { multipart: true }, object: f.object %>
+
+<%= f.label "Room #" %>
+<%= f.number_field :room_no, class: 'form-control'  , :required => true %>
+
+<%= f.label :price  %>
+<%= f.number_field :price, class: 'form-control' , :required => true %>
+
+<%= f.label :category %>
+<%= f.select :category,['single', 'double', 'triple','master'], :required => true %>
+
+<%= hidden_field_tag 'room[hotel_id]', @hotel_id %>
+
+<%= f.submit "Create room", class: "btn btn-primary" %>
+
+<% end %>
+</div>
+</div>

@@ -1,0 +1,55 @@
+
+<%= form_tag hotels_search_path,id: 'search', style: 'display:inline',method: :post do %>
+  
+  <%= label_tag(:country, "Country:") %>
+  <%= text_field_tag :country, params[:country],:value => country?, :required => true %> 
+  
+  <%= label_tag(:city, "City:") %>
+  <%= text_field_tag :city, params[:city], :value => city? %>
+  
+   <%= label_tag(:check_in, "Check in:") %>
+    <%= text_field_tag :check_in, params[:check_in],:required => true, id: "datetimepicker1" %>
+    
+    <%= label_tag(:check_out, "Check out:") %>
+    <%= text_field_tag :check_out, params[:check_out],:required => true, id: "datetimepicker2" %>
+
+  <%= submit_tag "Search", name: nil, class: "btn btn-primary" %>
+<% end %>
+
+ <script type="text/javascript">
+    $('#search').bind('submit', function(e) {
+      var current_date = new Date($.now())
+      var check_in = new Date($("#datetimepicker1").val())
+      var check_out = new Date($("#datetimepicker2").val())
+    if (check_in < current_date || check_out < current_date)
+    {
+      alert("Kindly enter a date greater than current date")
+      e.preventDefault();
+    }
+    else
+    {
+      if (check_out < check_in )
+      {
+        alert("Incorrect Dates")
+        e.preventDefault();
+      }
+    }
+    });
+
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+        widgetPositioning: {
+            vertical: 'bottom'
+        }
+      });
+  });
+
+  $(function () {
+    $('#datetimepicker2').datetimepicker({
+        widgetPositioning: {
+            vertical: 'bottom'
+        }
+      });
+  });
+
+    </script>

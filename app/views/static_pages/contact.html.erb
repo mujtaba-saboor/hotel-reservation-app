@@ -1,0 +1,27 @@
+ <div class="row">
+ <aside class="col-md-4">
+      <section class="user_info">
+        <% if user_signed_in?  %>
+        <% if cannot? :manage, User%>
+        <%= render 'shared/hotels_form' %>
+        <%end%>
+        <%end%>
+      </section>
+    </aside>
+<% provide(:title, 'Contact') %>
+
+<div class="col-md-8">
+<h1>Contact</h1>
+<p>For further information or assistance, please send us an email at dummy@dummy.edu.pk or call us at Tel: +92 (111) 11111
+  <br>
+<b>Head Office:</b> 10-E1,
+DHA Phase 4, Lahore, 54000, Pakistan.
+<br>
+<b>Tel:</b> +92 (111) 11111, Fax: +92 (111) 11111
+<br>
+<b>E-mail:</b> dummy@dummy.edu.pk
+<br>
+<b>Web:</b> <a class="href">google.com</a>
+</p>
+</div>
+</div>

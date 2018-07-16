@@ -1,0 +1,6 @@
+<% if @hotels.any? %>
+<ol class="microposts">
+<%= render @hotels %>
+</ol>
+<%= will_paginate @hotels %>
+<% end %>
